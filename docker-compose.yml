@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    #command: python manage.py runserver 0.0.0.0:8000
+    depends_on:
+      - postgres
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./src/:/src
+    restart: unless-stopped
+    env_file:
+      - src/.env
+
+  postgres:
+    image: postgis/postgis:12-3.0-alpine
+    restart: unless-stopped
+    env_file:
+      - src/.env
+    volumes:
+      - pgdata:/var/lib/postgresql
+
+volumes:
+    pgdata:

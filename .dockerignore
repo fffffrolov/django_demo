@@ -1,0 +1,46 @@
+*/logs
+*.pyc
+__pycache__
+.ipynb*
+*.env
+*/node_modules
+*.md
+*.DS_Store
+.git/*
+.gitignore
+.gitlab-ci.yml
+*.sqlite3
+src/media
+# virtual environments
+venv
+logs
+# Python files
+*.pyc
+__pycache__
+
+# Python Notebook dot files
+.ipynb*
+
+# Secret environment settings
+.env
+.env.example
+
+# Node and Webpack files
+node_modules
+npm-debug.log
+webpack-stats*
+
+# Static assests
+staticfiles/
+static_cdn
+#media_cdn
+
+# Ignore sqlite
+db.sqlite3
+*.sql
+# Apple files
+.DS_Store
+
+# Other
+docker-compose.yml
+Dockerfile
