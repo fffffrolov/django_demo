@@ -16,8 +16,4 @@ class Migration(migrations.Migration):
             name='name',
             field=models.CharField(db_index=True, max_length=255),
         ),
-        migrations.AddIndex(
-            model_name='branch',
-            index=django.contrib.postgres.indexes.GistIndex(fields=['location'], name='branch_location_gist_index'),
-        ),
     ]

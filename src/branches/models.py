@@ -25,13 +25,15 @@ class BranchQueryset(models.QuerySet):
     def with_employees_count(self) -> models.QuerySet:
         return self.annotate(_employees_count=models.Count('employees'))
 
-    def annotate_not_far_away(self, coordinates: Sequence[float], radius :int = 30000) -> models.QuerySet:
-        point = Point(*map(float, coordinates), srid=4326)
+    def order_by_distance(self, latitude: float, longitude: float, max_radius: int = 30000) -> models.QuerySet:
+        point = Point(float(latitude), float(longitude), srid=4326)
 
         return self.filter(
-            geometry__dwithin=(point, D(m=radius)),
+            # Distance is an expensive operation.
+            # This is why we exclude objects that are too far away from the search point.
+            location__dwithin=(point, D(m=max_radius)),
         ).annotate(
-            distance=Distance('geometry', point),
+            distance=Distance('location', point),
         ).order_by('-distance')
 
 
@@ -54,7 +56,6 @@ class Branch(Timestamped, AppModel):
     class Meta:
         indexes = [
             GinIndex(name='branch_name_gin_trgm_index', fields=['name'], opclasses=['gin_trgm_ops']),
-            GistIndex(fields=['location'], name='branch_location_gist_index'),
         ]
 
     @property
