@@ -22,9 +22,6 @@ REST_FRAMEWORK = {
 
 if env('DEBUG') and env('ENVIRONMENT') == 'local':
     REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'].append('rest_framework.renderers.BrowsableAPIRenderer')
-    REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES'].insert(
-        0, 'app.debug_authentication.CsrfExemptSessionAuthentication',
-    )
 
 
 SWAGGER_SETTINGS = {

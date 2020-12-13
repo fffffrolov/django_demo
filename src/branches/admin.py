@@ -43,4 +43,3 @@ class BranchAdmin(AppModelAdmin):
         return obj.employees_count
     admin_employees_count.admin_order_field = '_employees_count'    # type: ignore
     admin_employees_count.short_description = 'Total Employees'    # type: ignore
-

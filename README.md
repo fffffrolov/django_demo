@@ -1,5 +1,5 @@
-# Demo app
- - python 3.7
+# Django Demo App
+ - Python 3.7
  - Django 2.2
  - PostgreSQL 12
  - Postgis 3.0

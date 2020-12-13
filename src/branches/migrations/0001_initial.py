@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
                 ('modified', models.DateTimeField(blank=True, db_index=True, null=True)),
                 ('location', django.contrib.gis.db.models.fields.GeometryField(blank=True, geography=True, null=True, srid=4326)),
                 ('name', models.CharField(max_length=255)),
-                ('facade', models.ImageField(blank=True, null=True, upload_to=app.utils.RandomPath('branches/facades'))),
+                ('facade', models.ImageField(blank=True, upload_to=app.utils.RandomPath('branches/facades'))),
             ],
             options={
                 'abstract': False,

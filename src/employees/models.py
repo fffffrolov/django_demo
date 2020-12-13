@@ -14,6 +14,9 @@ class EmployeeQuerySet(models.QuerySet):
             query = f'%{query_string}%'
         return self.extra(where=['first_name ILIKE %s OR last_name ILIKE %s'], params=[query, query])
 
+    def with_branch(self):
+        return self.select_related('branch')
+
 
 class Employee(Timestamped, AppModel):
     branch = models.ForeignKey(
@@ -24,12 +27,15 @@ class Employee(Timestamped, AppModel):
     )
     first_name = models.CharField(
         max_length=255,
+        db_index=True,
     )
     last_name = models.CharField(
         max_length=255,
+        db_index=True,
     )
     position = models.CharField(
         max_length=255,
+        db_index=True,
     )
 
     objects = EmployeeQuerySet.as_manager()
