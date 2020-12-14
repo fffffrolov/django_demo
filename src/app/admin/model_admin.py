@@ -1,10 +1,12 @@
-from typing import Optional
+# type: ignore
+from typing import Optional, Tuple
 
 from django import forms
 from django.contrib import admin
 from django.contrib.gis.db import models as gis_models
 from django.db import models
 from django.db.models import Model
+from django.http import HttpRequest
 from django.urls import NoReverseMatch, reverse
 from django.utils.safestring import SafeText, mark_safe
 from django.utils.translation import gettext_lazy as _
@@ -12,7 +14,13 @@ from mapwidgets.widgets import GooglePointFieldWidget
 
 
 class CustomSearchMixin:
-    def get_search_results(self, request, queryset, search_term):
+    """
+    Customize admin search by specified in model QuerySet method
+    """
+    def get_search_results(self,
+                           request: HttpRequest,
+                           queryset: models.QuerySet,
+                           search_term: str) -> Tuple[models.QuerySet, bool]:
         if hasattr(queryset, 'search') and callable(queryset.search):
             if search_term:
                 return queryset.search(search_term), False
@@ -59,16 +67,20 @@ class AdminFormsMixin:
     }
 
 
-class AppModelAdmin(CustomSearchMixin,  # type: ignore
+class AppModelAdmin(CustomSearchMixin,
                     AdminLinksMixin,
                     AdminFormsMixin,
                     admin.ModelAdmin):
     pass
 
 
-class AppTabularInline(AdminLinksMixin, AdminFormsMixin, admin.TabularInline):  # type: ignore
+class AppTabularInline(AdminLinksMixin,
+                       AdminFormsMixin,
+                       admin.TabularInline):
     pass
 
 
-class AppStackedInline(AdminLinksMixin, AdminFormsMixin, admin.StackedInline):  # type: ignore
+class AppStackedInline(AdminLinksMixin,
+                       AdminFormsMixin,
+                       admin.StackedInline):
     pass

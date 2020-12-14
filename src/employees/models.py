@@ -8,6 +8,7 @@ class EmployeeQuerySet(models.QuerySet):
 
     def search(self, query_string: str) -> models.QuerySet:
         # When searching for a person, the user usually expects the first or last name to start with their input.
+        # We use ~~* (ILIKE) operator because we can increase this query productivity by GIN index.
         query = f'{str(query_string).strip()}%'
         return self.extra(where=['first_name ~~* %s OR last_name ~~* %s'], params=[query, query])
 

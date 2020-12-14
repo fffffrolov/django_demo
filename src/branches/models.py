@@ -17,7 +17,7 @@ class BranchQueryset(models.QuerySet):
 
     def search(self, query_string: str) -> models.QuerySet:
         # Branch name can consist of several words.
-        # When searching, the user may forget some of the words or their sequence.
+        # When searching, the user may forget some of the words or their order.
         # Therefore, we show him those entries that contain at least half of the words he specified.
         return self.extra(
             select={'search_similarity': 'word_similarity(%s, name)'},

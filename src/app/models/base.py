@@ -18,7 +18,9 @@ class AppModel(models.Model):
         abstract = True
 
     def __str__(self):
-        """Default name for all models"""
+        """
+        Default name for all models
+        """
         if hasattr(self, 'name'):
             return str(self.name)
         return super().__str__()
