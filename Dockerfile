@@ -24,11 +24,12 @@ RUN echo deb http://deb.debian.org/debian stretch contrib non-free > /etc/apt/so
 VOLUME /src
 WORKDIR /src
 
-ADD requirements.txt /
-RUN pip install -r /requirements.txt
+ADD *requirements.txt ./
+
+ARG REQUIREMETNS=requirements.txt
+RUN pip install pip-tools && ls &&  pip-sync $REQUIREMETNS
 
 COPY ./src/ .
-#ADD src /src
 
 RUN python manage.py collectstatic --noinput
 

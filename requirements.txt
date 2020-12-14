@@ -28,7 +28,7 @@ inflection==0.5.1         # via drf-yasg
 itypes==1.2.0             # via coreapi
 jinja2==2.11.2            # via coreschema
 markupsafe==1.1.1         # via jinja2
-packaging==20.7           # via drf-yasg
+packaging==20.8           # via drf-yasg
 pillow==8.0.1             # via -r requirements.in
 psycopg2==2.8.6           # via -r requirements.in
 pycparser==2.20           # via cffi

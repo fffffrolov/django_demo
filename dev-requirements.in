@@ -16,3 +16,6 @@ ipython
 psycopg2-binary
 django-stubs
 djangorestframework-stubs
+pytest-django
+pytest-factoryboy
+faker
