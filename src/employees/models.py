@@ -7,12 +7,9 @@ from app.models import AppModel, models
 class EmployeeQuerySet(models.QuerySet):
 
     def search(self, query_string: str) -> models.QuerySet:
-        query_string = str(query_string).strip()
-        if len(query_string) < 3:
-            query = f'{query_string}%'
-        else:
-            query = f'%{query_string}%'
-        return self.extra(where=['first_name ILIKE %s OR last_name ILIKE %s'], params=[query, query])
+        # When searching for a person, the user usually expects the first or last name to start with their input.
+        query = f'{str(query_string).strip()}%'
+        return self.extra(where=['first_name ~~* %s OR last_name ~~* %s'], params=[query, query])
 
     def with_branch(self):
         return self.select_related('branch')

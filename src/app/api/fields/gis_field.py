@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 from drf_yasg import openapi
 from rest_framework.fields import Field
 
-example_format = '{"lng": 42.4351303, "lat": 19.2782777}'
+example_format = '{"lat": 42.4351303, "lng": 19.2782777}'
 
 
 class LocationGISField(Field):
@@ -18,18 +18,18 @@ class LocationGISField(Field):
             'type': openapi.TYPE_OBJECT,
             'title': 'Location',
             'properties': {
-                'lng': openapi.Schema(
-                    title='longitude',
-                    format=openapi.FORMAT_FLOAT,
-                    type=openapi.TYPE_NUMBER,
-                ),
                 'lat': openapi.Schema(
                     title='latitude',
                     format=openapi.FORMAT_FLOAT,
                     type=openapi.TYPE_NUMBER,
                 ),
+                'lng': openapi.Schema(
+                    title='longitude',
+                    format=openapi.FORMAT_FLOAT,
+                    type=openapi.TYPE_NUMBER,
+                ),
             },
-            'required': ['lng', 'lat'],
+            'required': ['lat', 'lng'],
         }
 
     def __init__(self, *args, **kwargs):
@@ -45,6 +45,6 @@ class LocationGISField(Field):
 
     def to_representation(self, value: Point) -> Optional[Mapping[str, float]]:
         try:
-            return {'lng': value.x, 'lat': value.y}
+            return {'lat': value.y, 'lng': value.x}
         except IndexError:
             return None

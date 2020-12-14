@@ -23,4 +23,4 @@ class BranchSerializer(serializers.ModelSerializer):
         """
         We could avoid duplicating functions. But type hinting makes API docs better.
         """
-        return obj.employees_count
+        return obj.employees_count  # type: ignore

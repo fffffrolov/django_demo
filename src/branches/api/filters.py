@@ -1,3 +1,4 @@
+from decimal import Decimal
 from typing import Sequence, Union
 
 from django.db import models
@@ -31,7 +32,7 @@ class BranchFilterSet(filters.FilterSet):
     def filter_by_location(self,
                            queryset: BranchQueryset,
                            name: str,
-                           value: Sequence[Union[int, float]]) -> models.QuerySet:
+                           value: Sequence[Union[Decimal, int]]) -> models.QuerySet:
         if len(value) > 3 or len(value) < 2:
             return queryset.none()
         return queryset.order_by_distance(*value)

@@ -33,7 +33,6 @@ AWS_STORAGE_BUCKET_NAME={YOUR_AWS_STORAGE_BUCKET_NAME}
 
 
 ### TODO:
-1. REST API
-2. fixtures
-3. Tests
-4. Role based permissions
+1. Fixtures
+2. Tests
+3. Role based permissions

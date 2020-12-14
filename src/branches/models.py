@@ -1,37 +1,44 @@
 from __future__ import annotations
 
-from typing import Sequence
+from decimal import Decimal
 
 from behaviors.behaviors import Timestamped
 from django.contrib.gis.db.models import GeometryField
 from django.contrib.gis.db.models.functions import Distance
-from django.contrib.gis.geos import Point
+from django.contrib.gis.geos.point import Point
 from django.contrib.gis.measure import D
-from django.contrib.postgres.indexes import GinIndex, GistIndex
+from django.contrib.postgres.indexes import GinIndex
 
 from app.models import AppModel, models
 from app.utils import RandomPath
 
 
 class BranchQueryset(models.QuerySet):
+
     def search(self, query_string: str) -> models.QuerySet:
-        query_string = str(query_string).strip()
-        if len(query_string) < 3:
-            query = f'{query_string}%'
-        else:
-            query = f'%{query_string}%'
-        return self.extra(where=['name ILIKE %s'], params=[query])
+        # Branch name can consist of several words.
+        # When searching, the user may forget some of the words or their sequence.
+        # Therefore, we show him those entries that contain at least half of the words he specified.
+        return self.extra(
+            select={'search_similarity': 'word_similarity(%s, name)'},
+            where=['word_similarity(%s, name) >= 0.5'],
+            select_params=[query_string],
+            params=[query_string],
+        ).order_by('-search_similarity')
 
     def with_employees_count(self) -> models.QuerySet:
         return self.annotate(_employees_count=models.Count('employees'))
 
-    def order_by_distance(self, latitude: float, longitude: float, max_radius: int = 30000) -> models.QuerySet:
-        point = Point(float(latitude), float(longitude), srid=4326)
+    def order_by_distance(self,
+                          latitude: Decimal,
+                          longitude: Decimal,
+                          max_radius: int = 30000) -> models.QuerySet:
+        point = Point(float(longitude), float(latitude), srid=4326)
 
         return self.filter(
             # Distance is an expensive operation.
             # This is why we exclude objects that are too far away from the search point.
-            location__dwithin=(point, D(m=max_radius)),
+            location__dwithin=(point, D(m=int(max_radius))),
         ).annotate(
             distance=Distance('location', point),
         ).order_by('-distance')
@@ -61,6 +68,5 @@ class Branch(Timestamped, AppModel):
     @property
     def employees_count(self) -> int:
         if hasattr(self, '_employees_count'):
-            self._employees_count : int
-            return self._employees_count
+            return self._employees_count    # type: ignore
         return self.employees.count()

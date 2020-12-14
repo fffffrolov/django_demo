@@ -18,7 +18,7 @@ class EmployeeInline(AppTabularInline):
 
 @admin.register(Employee)
 class EmployeeAdmin(AppModelAdmin):
-    list_display = ['id', 'first_name', 'last_name', 'position', 'created', 'modified']
+    list_display = ['id', 'first_name', 'last_name', 'branch', 'position', 'created', 'modified']
     list_display_links = list_display
     list_filter = (
         ('branch', RelatedDropdownFilter),
@@ -44,6 +44,9 @@ class EmployeeAdmin(AppModelAdmin):
     )
     autocomplete_fields = ['branch']
     readonly_fields = ('modified', 'created', 'branch_link')
+
+    def get_queryset(self, request):
+        return super().get_queryset(request).with_branch()
 
     def branch_link(self, obj):
         if obj.branch_id is not None:
