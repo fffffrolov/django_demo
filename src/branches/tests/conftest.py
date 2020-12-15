@@ -3,22 +3,30 @@ from typing import Callable, Sequence
 
 import pytest
 from django.contrib.gis.geos.point import Point
-from pytest_factoryboy import register
 
 from branches.tests.factories import BranchFactory
 from employees.tests.factories import EmployeeFactory
 
-register(BranchFactory)
+
+@pytest.fixture
+def create_branches() -> Callable:
+    def create(total=1, **kwargs) -> Sequence[BranchFactory]:
+        return [BranchFactory(**kwargs) for _ in range(total)]
+    return create
 
 
 @pytest.fixture
-def search_keyword() -> str:
-    return 'Slytherin'
+def create_employees() -> Callable:
+    def create(total=1, **kwargs) -> Sequence[EmployeeFactory]:
+        return [EmployeeFactory(**kwargs) for _ in range(total)]
+    return create
 
 
 @pytest.fixture
-def other_search_keyword() -> str:
-    return 'Gryffindor'
+def create_branch() -> Callable:
+    def create(**kwargs) -> BranchFactory:
+        return BranchFactory(**kwargs)
+    return create
 
 
 @pytest.fixture
@@ -39,17 +47,13 @@ def get_point_inside_moscow() -> Callable:
 
 
 @pytest.fixture
-def create_branches() -> Callable:
-    def create(total=1, **kwargs) -> Sequence[BranchFactory]:
-        return [BranchFactory(**kwargs) for _ in range(total)]
-    return create
+def search_keyword() -> str:
+    return 'Slytherin'
 
 
 @pytest.fixture
-def create_employees() -> Callable:
-    def create(total=1, **kwargs) -> Sequence[EmployeeFactory]:
-        return [EmployeeFactory(**kwargs) for _ in range(total)]
-    return create
+def other_search_keyword() -> str:
+    return 'Gryffindor'
 
 
 @pytest.fixture

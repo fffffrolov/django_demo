@@ -10,6 +10,7 @@ from django.http import HttpRequest
 from django.urls import NoReverseMatch, reverse
 from django.utils.safestring import SafeText, mark_safe
 from django.utils.translation import gettext_lazy as _
+from django_admin_inline_paginator.admin import TabularInlinePaginated
 from mapwidgets.widgets import GooglePointFieldWidget
 
 
@@ -71,6 +72,12 @@ class AppModelAdmin(CustomSearchMixin,
                     AdminLinksMixin,
                     AdminFormsMixin,
                     admin.ModelAdmin):
+    pass
+
+
+class AppTabularInlinePaginated(AdminLinksMixin,
+                                AdminFormsMixin,
+                                TabularInlinePaginated):
     pass
 
 

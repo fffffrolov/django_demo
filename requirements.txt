@@ -10,6 +10,7 @@ chardet==3.0.4            # via requests
 coreapi==2.3.3            # via drf-yasg
 coreschema==0.0.4         # via coreapi, drf-yasg
 cryptography==3.3.1       # via pyjwt
+django-admin-inline-paginator==0.1  # via -r requirements.in
 django-admin-list-filter-dropdown==1.0.3  # via -r requirements.in
 django-behaviors==0.5.1   # via -r requirements.in
 django-environ==0.4.5     # via -r requirements.in
@@ -18,7 +19,7 @@ django-healthchecks==1.4.2  # via -r requirements.in
 django-map-widgets==0.3.0  # via -r requirements.in
 django-split-settings==1.0.1  # via -r requirements.in
 django-storages==1.10.1   # via -r requirements.in
-django==2.2.17            # via -r requirements.in, django-filter, django-healthchecks, django-storages, djangorestframework, djangorestframework-simplejwt, drf-jwt, drf-yasg
+django==2.2.17            # via -r requirements.in, django-admin-inline-paginator, django-filter, django-healthchecks, django-storages, djangorestframework, djangorestframework-simplejwt, drf-jwt, drf-yasg
 djangorestframework-simplejwt==4.6.0  # via -r requirements.in
 djangorestframework==3.12.2  # via -r requirements.in, djangorestframework-simplejwt, drf-jwt, drf-yasg
 drf-jwt==1.16.1           # via -r requirements.in

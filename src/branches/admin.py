@@ -2,11 +2,12 @@ from django.utils.safestring import mark_safe
 
 from app.admin import AppModelAdmin, admin
 from branches.models import Branch
-from employees.admin import EmployeeInline
+from employees.admin import EmployeeReadonlyTable
 
 
 @admin.register(Branch)
 class BranchAdmin(AppModelAdmin):
+    save_on_top = True
     list_display = ['id', 'name', 'admin_employees_count', 'created', 'modified']
     list_display_links = list_display
     search_fields = ['name']
@@ -29,7 +30,7 @@ class BranchAdmin(AppModelAdmin):
     )
     readonly_fields = ('modified', 'created', 'facade_preview', 'admin_employees_count')
 
-    inlines = [EmployeeInline]
+    inlines = [EmployeeReadonlyTable]
 
     def facade_preview(self, obj):
         if not obj.facade:

@@ -18,17 +18,6 @@ def test_order_by_distance(get_point_inside_moscow, moscow_canter, outside_mosco
     assert all([not_moscow_branch.id not in filtered_branches_ids for not_moscow_branch in not_moscow_branches])
 
 
-def test_n_plus_one_in_list(django_assert_max_num_queries, create_branches, create_employees):
-    branches = create_branches(3)
-    for branch in branches:
-        create_employees(10, branch=branch)
-
-    with django_assert_max_num_queries(1):
-        branches = Branch.objects.with_employees_count()
-        for branch in branches:
-            _ = branch.employees_count
-
-
 def test_search_by_keyword(branch_with_keyword, branch_with_other_keyword, search_keyword, other_search_keyword):
     keyword_search = Branch.objects.search(search_keyword).values_list('id', flat=True)
     other_keyword_search = Branch.objects.search(other_search_keyword).values_list('id', flat=True)

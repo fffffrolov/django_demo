@@ -4,19 +4,28 @@
  - PostgreSQL 12
  - Postgis 3.0
 
+### Run Demo:
+```sh
+./demo.sh
+```
+
 ### Run project in docker:
 ```sh
 cp src/.env.templ src/.env
+docker-compose build
 docker-compose up -d
+docker-compose exec app python manage.py fake_db
+docker-compose exec app python manage.py createsuperuser
 ```
 
-### Run localy:
+### Run project locally:
 ```sh
 cp src/.env.templ src/.env
 pip-sync requirements.txt dev-requirements.txt
 cd src
 ./manage.py migrate
 ./manage.py createsuperuser
+./manage.py fake_db
 ./manage.py runserver
 ```
 
@@ -31,8 +40,20 @@ AWS_STORAGE_BUCKET_NAME={YOUR_AWS_STORAGE_BUCKET_NAME}
 ```
 3. Restart project
 
+### Admin:
+[localhost:8000/admin/](http://localhost:8000/admin/)
+demo_user: admin
+demo_password: password
+
+### API:
+####docs:
+[localhost:8000/api/v1/docs/](http://localhost:8000/api/v1/docs/)
+
+#### Employees:
+[localhost:8000/api/v1/employees/](http://localhost:8000/api/v1/employees/)
+
+#### Branches:
+[localhost:8000/api/v1/branches/](http://localhost:8000/api/v1/branches/)
 
 ### TODO:
-1. Fixtures
-2. Tests
-3. Role based permissions
+1. Role based permissions

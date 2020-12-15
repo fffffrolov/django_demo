@@ -32,3 +32,5 @@ MAP_WIDGETS = {
     ),
     'GOOGLE_MAP_API_KEY': env('GOOGLE_MAP_API_KEY', default='', cast=str),
 }
+
+DATA_UPLOAD_MAX_NUMBER_FIELDS = None

@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
                 ('facade', models.ImageField(blank=True, upload_to=app.utils.RandomPath('branches/facades'))),
             ],
             options={
-                'abstract': False,
+                'ordering': ['-id'],
             },
         ),
     ]

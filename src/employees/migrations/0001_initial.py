@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
                 ('branch', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='employees', to='branches.Branch')),
             ],
             options={
-                'abstract': False,
+                'ordering': ['-id'],
             },
         ),
     ]

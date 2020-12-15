@@ -1,11 +1,12 @@
 from django_admin_listfilter_dropdown.filters import DropdownFilter, RelatedDropdownFilter
 
-from app.admin import AppModelAdmin, AppTabularInline, admin
+from app.admin import AppModelAdmin, AppTabularInlinePaginated, admin
 from employees.models import Employee
 
 
-class EmployeeInline(AppTabularInline):
+class EmployeeReadonlyTable(AppTabularInlinePaginated):
     model = Employee
+    per_page = 100
     fields = ['_link', 'first_name', 'last_name', 'position']
     readonly_fields = ['_link']
     extra = 0

@@ -7,24 +7,23 @@ from django.contrib.gis.db.models import GeometryField
 from django.contrib.gis.db.models.functions import Distance
 from django.contrib.gis.geos.point import Point
 from django.contrib.gis.measure import D
-from django.contrib.postgres.indexes import GinIndex
+from django.contrib.postgres.indexes import GistIndex
 
-from app.models import AppModel, models
+from app.models import AppModel, WordSimilarityQuerySet, models
 from app.utils import RandomPath
 
 
-class BranchQueryset(models.QuerySet):
+class BranchQueryset(WordSimilarityQuerySet):
 
     def search(self, query_string: str) -> models.QuerySet:
         # Branch name can consist of several words.
         # When searching, the user may forget some of the words or their order.
         # Therefore, we show him those entries that contain at least half of the words he specified.
-        return self.extra(
-            select={'search_similarity': 'word_similarity(%s, name)'},
-            where=['word_similarity(%s, name) >= 0.5'],
-            select_params=[query_string],
-            params=[query_string],
-        ).order_by('-search_similarity')
+        return self.with_word_similarity(
+            'name', query_string,
+        ).filter(
+            word_similarity__gte=0.5,
+        ).order_by('-word_similarity')
 
     def with_employees_count(self) -> models.QuerySet:
         return self.annotate(_employees_count=models.Count('employees'))
@@ -61,8 +60,9 @@ class Branch(Timestamped, AppModel):
     objects = BranchQueryset.as_manager()
 
     class Meta:
+        ordering = ['-id']
         indexes = [
-            GinIndex(name='branch_name_gin_trgm_index', fields=['name'], opclasses=['gin_trgm_ops']),
+            GistIndex(name='branch_name_gist_trgm_index', fields=['name'], opclasses=['gist_trgm_ops']),
         ]
 
     @property

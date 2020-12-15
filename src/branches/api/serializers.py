@@ -4,6 +4,20 @@ from app.api.fields import LocationGISField
 from branches.models import Branch
 
 
+class BranchSmallSerializer(serializers.ModelSerializer):
+    location = LocationGISField()
+
+    class Meta:
+        model = Branch
+        fields = [
+            'id',
+            'location',
+            'name',
+            'facade',
+        ]
+        read_only_fields = fields
+
+
 class BranchSerializer(serializers.ModelSerializer):
     location = LocationGISField()
     employees_count = serializers.SerializerMethodField()

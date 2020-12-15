@@ -14,3 +14,4 @@ uwsgi==2.0.19.1
 django-map-widgets==0.3.0
 django-admin-list-filter-dropdown==1.0.3
 pillow==8.0.1
+django-admin-inline-paginator==0.1

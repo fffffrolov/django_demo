@@ -10,6 +10,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'behaviors',
     'mapwidgets',
+    'django_admin_inline_paginator',
 
     'django.contrib.gis',
     'django.contrib.postgres',
