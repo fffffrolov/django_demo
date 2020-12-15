@@ -42,7 +42,7 @@ def outside_moscow() -> Point:
 @pytest.fixture
 def get_point_inside_moscow() -> Callable:
     def get_point() -> Point:
-        return Point(random.uniform(37.583104, 37.656568), random.uniform(55.773044, 55.755814), srid=4326)
+        return Point(random.uniform(37.583104, 37.656568), random.uniform(55.755814, 55.773044), srid=4326)
     return get_point
 
 

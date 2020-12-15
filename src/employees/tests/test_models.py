@@ -11,11 +11,6 @@ def employee_with_name(request, create_employee) -> EmployeeFactory:
     return create_employee(first_name=request.param[0], last_name=request.param[1])
 
 
-@pytest.fixture
-def employee_with_surname(request, create_employee) -> EmployeeFactory:
-    return create_employee(last_name=request.param)
-
-
 @pytest.mark.parametrize(
     ('employee_with_name', 'search', 'in_search'),
     [
@@ -28,6 +23,7 @@ def employee_with_surname(request, create_employee) -> EmployeeFactory:
 )
 def test_search_by_first_letters(employee_with_name, search, in_search):
     filtered = Employee.objects.search(search).values_list('id', flat=True)
+
     assert (employee_with_name.id in filtered) is in_search
 
 
@@ -43,6 +39,7 @@ def test_search_by_first_letters(employee_with_name, search, in_search):
 )
 def test_search_by_name(employee_with_name, search, in_search):
     filtered = Employee.objects.search(search).values_list('id', flat=True)
+
     assert (employee_with_name.id in filtered) is in_search
 
 
@@ -58,6 +55,7 @@ def test_search_by_name(employee_with_name, search, in_search):
 )
 def test_search_by_surname(employee_with_name, search, in_search):
     filtered = Employee.objects.search(search).values_list('id', flat=True)
+
     assert (employee_with_name.id in filtered) is in_search
 
 
@@ -73,6 +71,7 @@ def test_search_by_surname(employee_with_name, search, in_search):
 )
 def test_search_without_first_letters(employee_with_name, search, in_search):
     filtered = Employee.objects.search(search).values_list('id', flat=True)
+
     assert (employee_with_name.id in filtered) is in_search
 
 
