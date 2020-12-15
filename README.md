@@ -3,11 +3,22 @@
  - Django 2.2
  - PostgreSQL 12
  - Postgis 3.0
+ - Pytest 6
 
 ### Run Demo:
 ```sh
 ./demo.sh
 ```
+
+ - user with edit maps permissions:
+    - username: map_editor
+    - password: map_editor_password
+ - user without edit maps permissions:
+    - username: map_viewer
+    - password: map_viewer_password
+ - superuser:
+    - username: admin
+    - password: password
 
 ### Run project in docker:
 ```sh
@@ -29,6 +40,12 @@ cd src
 ./manage.py runserver
 ```
 
+### Run tests:
+```sh
+cd src
+pytes
+```
+
 ### Enable S3 upload
 1. Uncoment `#DEFAULT_FILE_STORAGE=storages.backends.s3boto3.S3Boto3Storage` in src/.env
 2. Specify your AWS keys 
@@ -42,11 +59,11 @@ AWS_STORAGE_BUCKET_NAME={YOUR_AWS_STORAGE_BUCKET_NAME}
 
 ### Admin:
 [localhost:8000/admin/](http://localhost:8000/admin/)
-demo_user: admin
-demo_password: password
+ - demo_user: admin
+ - demo_password: password
 
 ### API:
-####docs:
+#### Docs:
 [localhost:8000/api/v1/docs/](http://localhost:8000/api/v1/docs/)
 
 #### Employees:
@@ -55,5 +72,8 @@ demo_password: password
 #### Branches:
 [localhost:8000/api/v1/branches/](http://localhost:8000/api/v1/branches/)
 
-### TODO:
-1. Role based permissions
+### Create new db dump:
+```sh
+docker-compose exec postgres pg_dump --user postgres --if-exists --clean demo_app | gzip -9  > db/db.sql.gz
+```
+

@@ -1,4 +1,5 @@
 from django.utils.safestring import mark_safe
+from rolepermissions.checkers import has_permission
 
 from app.admin import AppModelAdmin, admin
 from branches.models import Branch
@@ -31,6 +32,12 @@ class BranchAdmin(AppModelAdmin):
     readonly_fields = ('modified', 'created', 'facade_preview', 'admin_employees_count')
 
     inlines = [EmployeeReadonlyTable]
+
+    def get_readonly_fields(self, request, obj=None) -> tuple:
+        readonly_fields = super().get_readonly_fields(request, obj)
+        if not has_permission(request.user, 'edit_branch_map'):
+            readonly_fields = tuple(readonly_fields) + ('location', )
+        return readonly_fields
 
     def facade_preview(self, obj):
         if not obj.facade:

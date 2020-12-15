@@ -13,13 +13,15 @@ cryptography==3.3.1       # via pyjwt
 django-admin-inline-paginator==0.1  # via -r requirements.in
 django-admin-list-filter-dropdown==1.0.3  # via -r requirements.in
 django-behaviors==0.5.1   # via -r requirements.in
+django-discover-runner==1.0  # via django-role-permissions
 django-environ==0.4.5     # via -r requirements.in
 django-filter==2.4.0      # via -r requirements.in
 django-healthchecks==1.4.2  # via -r requirements.in
 django-map-widgets==0.3.0  # via -r requirements.in
+django-role-permissions==3.1.1  # via -r requirements.in
 django-split-settings==1.0.1  # via -r requirements.in
 django-storages==1.10.1   # via -r requirements.in
-django==2.2.17            # via -r requirements.in, django-admin-inline-paginator, django-filter, django-healthchecks, django-storages, djangorestframework, djangorestframework-simplejwt, drf-jwt, drf-yasg
+django==2.2.17            # via -r requirements.in, django-admin-inline-paginator, django-filter, django-healthchecks, django-role-permissions, django-storages, djangorestframework, djangorestframework-simplejwt, drf-jwt, drf-yasg
 djangorestframework-simplejwt==4.6.0  # via -r requirements.in
 djangorestframework==3.12.2  # via -r requirements.in, djangorestframework-simplejwt, drf-jwt, drf-yasg
 drf-jwt==1.16.1           # via -r requirements.in
@@ -39,7 +41,7 @@ pytz==2020.4              # via django
 requests==2.25.0          # via coreapi, django-healthchecks
 ruamel.yaml.clib==0.2.2   # via ruamel.yaml
 ruamel.yaml==0.16.12      # via drf-yasg
-six==1.15.0               # via cryptography, django-healthchecks
+six==1.15.0               # via cryptography, django-healthchecks, django-role-permissions
 sqlparse==0.4.1           # via django
 uritemplate==3.0.1        # via coreapi, drf-yasg
 urllib3==1.26.2           # via requests

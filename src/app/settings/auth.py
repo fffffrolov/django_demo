@@ -1,3 +1,6 @@
+ROLEPERMISSIONS_MODULE = 'app.roles'
+ROLEPERMISSIONS_REGISTER_ADMIN = True
+
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]

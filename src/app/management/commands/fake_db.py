@@ -9,7 +9,7 @@ class Command(BaseCommand):
     Fill db with faked data
     """
     def handle(self, *app_labels, **options):
-        for b in range(10):
+        for _ in range(10):
             branch = BranchFactory()
-            for e in range(1000):
+            for _ in range(1000):
                 EmployeeFactory(branch=branch)
