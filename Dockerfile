@@ -31,8 +31,9 @@ RUN pip install -U pip poetry && ls &&  poetry install --no-root --without dev
 
 COPY ./backend/ .
 
-RUN python manage.py collectstatic --noinput
+RUN export SECRET_KEY=x DATABASE_URL=y\
+    && python manage.py collectstatic --noinput
 
 HEALTHCHECK CMD wget -q -O /dev/null http://localhost:8000/healthchecks/db/ ||  exit 1
 
-CMD python manage.py migrate && gunicorn --bind 0.0.0.0:8000 app.asgi:application -k uvicorn.workers.UvicornWorker
+CMD gunicorn --bind 0.0.0.0:8000 app.asgi:application -k uvicorn.workers.UvicornWorker
