@@ -30,11 +30,12 @@ docker-compose exec app python manage.py createsuperuser
 ```
 
 ### Run project locally:
+1. `pyenv install 3.11.3 && pyenv local 3.11.3`
+2. [Install Poetry](https://python-poetry.org/docs/#installation)
+3. `cp .env.templ .env`
+4. `poetry install`
+5. 
 ```sh
-`pyenv install 3.11.3 && pyenv local 3.11.3`
-[Install Poetry](https://python-poetry.org/docs/#installation)
-cp .env.templ .env
-poetry install
 cd backend
 ./manage.py migrate
 ./manage.py createsuperuser
