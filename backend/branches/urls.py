@@ -1,12 +1,10 @@
-from django.urls import include, path
-from rest_framework.routers import SimpleRouter
+from django.urls import path
 
-from branches.api import views
-
-router = SimpleRouter()
-router.register('', views.BranchViewSet)
+from .views import BranchDetailView, BranchesListView
 
 app_name = 'branches'
+
 urlpatterns = [
-    path('', include(router.urls)),
+    path('', BranchesListView.as_view(), name='list'),
+    path('<int:pk>/', BranchDetailView.as_view(), name='detail'),
 ]

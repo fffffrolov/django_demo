@@ -1,0 +1,44 @@
+{% extends 'django_bootstrap5/bootstrap5.html' %}
+
+{% load django_bootstrap5 static %}
+
+{% block bootstrap5_title %}Demo{% endblock %}
+
+{% block bootstrap5_extra_head %}
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
+  {% if ENABLE_TURBO %}
+    <script type="module">
+      import hotwiredTurbo from 'https://cdn.skypack.dev/@hotwired/turbo';
+    </script>
+  {% endif %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'branches:list' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'employees:list' %}">Employees</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+ {% endblock %}
+
+
+{% block bootstrap5_before_content %}{% endblock %}
+
+{% block bootstrap5_content %}
+<div class="container">
+    {% autoescape off %}{% bootstrap_messages %}{% endautoescape %}
+    {% block content %}(no content){% endblock %}
+</div>
+
+{% block bootstrap5_after_content %}{% endblock %}
+
+{% block bootstrap5_extra_script %}{% endblock %}
+
+{% endblock %}

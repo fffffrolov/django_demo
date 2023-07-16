@@ -1,12 +1,10 @@
-from django.urls import include, path
-from rest_framework.routers import SimpleRouter
+from django.urls import path
 
-from employees.api import views
-
-router = SimpleRouter()
-router.register('', views.EmployeeViewSet)
+from .views import EmployeeDetailView, EmployeeListView
 
 app_name = 'employees'
+
 urlpatterns = [
-    path('', include(router.urls)),
+    path('', EmployeeListView.as_view(), name='list'),
+    path('<int:pk>/', EmployeeDetailView.as_view(), name='detail'),
 ]

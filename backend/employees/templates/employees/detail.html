@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ object.name }}</h1>
+<p>{{ object.position }}</p>
+<p>Branch: <a href="{% url 'branches:detail' pk=object.branch.pk %}">{{ object.branch.name }}</a></p>
+<p>Location: {{ object.branch.location }}</p>
+{% endblock %}
+

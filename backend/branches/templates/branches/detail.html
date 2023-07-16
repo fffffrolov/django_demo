@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ object.name }}</h1>
+<p>{{ object.facade }}</p>
+<p>Total Employees: {{ object.employees_count }}</p>
+<p>Location: {{ object.location }}</p>
+{% with with_branch=False %}
+    {% include "employees/_list.html" %}
+  {% endwith %}
+{% endblock %}

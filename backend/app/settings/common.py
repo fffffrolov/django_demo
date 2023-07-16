@@ -5,7 +5,7 @@ ROOT_URLCONF = 'app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['app/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -13,6 +13,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'app.context_processors.enable_turbo',
             ],
         },
     },
@@ -30,3 +31,6 @@ MAP_WIDGETS = {
 }
 
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 600
+
+DEFAULT_LOAD_DELAY = 1
+ENABLE_TURBO = True

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Branches</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th># Total: {{ paginator.count }}</th>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for object in object_list %}
+    <tr>
+        <td>{{ counter_base|add:forloop.counter }}</td>
+        <td><a href="{% url 'branches:detail' pk=object.pk %}">{{ object.name }}</a></td>
+    </tr>
+    {% empty %}
+        <td colspan="2">There is no entities</td>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+{% include "_pagination.html" %}
+
+{% endblock %}

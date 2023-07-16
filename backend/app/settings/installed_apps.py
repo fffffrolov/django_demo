@@ -12,6 +12,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'rolepermissions',
+    'django_bootstrap5',
 
     'django.contrib.gis',
     'django.contrib.postgres',
