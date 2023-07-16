@@ -10,7 +10,7 @@ __pycache__
 .gitignore
 .gitlab-ci.yml
 *.sqlite3
-src/media
+backend/media
 # virtual environments
 venv
 logs
@@ -44,3 +44,4 @@ db.sqlite3
 # Other
 docker-compose.yml
 Dockerfile
+backend/app/settings/local.py

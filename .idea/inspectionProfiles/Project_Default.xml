@@ -1,0 +1,30 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="17">
+            <item index="0" class="java.lang.String" itemvalue="coverage" />
+            <item index="1" class="java.lang.String" itemvalue="pytest" />
+            <item index="2" class="java.lang.String" itemvalue="bandit" />
+            <item index="3" class="java.lang.String" itemvalue="pre-commit" />
+            <item index="4" class="java.lang.String" itemvalue="pytest-asyncio" />
+            <item index="5" class="java.lang.String" itemvalue="flake8-simplify" />
+            <item index="6" class="java.lang.String" itemvalue="types-redis" />
+            <item index="7" class="java.lang.String" itemvalue="types-requests" />
+            <item index="8" class="java.lang.String" itemvalue="respx" />
+            <item index="9" class="java.lang.String" itemvalue="facebook-business" />
+            <item index="10" class="java.lang.String" itemvalue="requests-oauthlib" />
+            <item index="11" class="java.lang.String" itemvalue="arq" />
+            <item index="12" class="java.lang.String" itemvalue="authlib" />
+            <item index="13" class="java.lang.String" itemvalue="anyio" />
+            <item index="14" class="java.lang.String" itemvalue="alembic" />
+            <item index="15" class="java.lang.String" itemvalue="dash-api-adjust-client" />
+            <item index="16" class="java.lang.String" itemvalue="pydantic" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

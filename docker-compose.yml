@@ -13,16 +13,20 @@ services:
     ports:
       - "8000:8000"
     restart: unless-stopped
+    environment:
+      DATABASE_URL: "postgis://postgres:postgres@postgres/django_demo"
     env_file:
-      - src/.env
+      - .env
 
   postgres:
     build:
       context: .
       dockerfile: db/Dockerfile
     restart: unless-stopped
+    ports:
+      - "5432:5432"
     env_file:
-      - src/.env
+      - .env
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U postgres" ]
       interval: 5s

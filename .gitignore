@@ -114,3 +114,4 @@ venv
 .vscode
 .env
 *.swp
+backend/app/settings/local.py

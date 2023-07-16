@@ -1,5 +1,5 @@
 #!/bin/bash
-cp ./src/.env.templ ./src/.env \
+cp .env.templ .env \
   && docker-compose build \
   && docker-compose up -d \
   && sleep 6 \

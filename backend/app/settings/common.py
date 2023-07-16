@@ -1,8 +1,4 @@
-from pathlib import Path
-
 from app.settings.env import env
-
-BASE_DIR = str(Path('.').resolve())
 
 ROOT_URLCONF = 'app.urls'
 

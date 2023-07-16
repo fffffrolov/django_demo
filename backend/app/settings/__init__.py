@@ -1,4 +1,4 @@
-from split_settings.tools import include
+from split_settings.tools import include, optional
 
 from app.settings.env import env
 
@@ -20,4 +20,5 @@ include(
     'static.py',
     'storage.py',
     'timezone.py',
+    optional('local.py'),
 )

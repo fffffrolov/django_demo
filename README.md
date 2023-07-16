@@ -1,9 +1,9 @@
 # Django Demo App
- - Python 3.7
- - Django 2.2
+ - Python 3.11
+ - Django 4.2
  - PostgreSQL 12
  - Postgis 3.0
- - Pytest 6
+ - Pytest 7.4
 
 ### Run Demo:
 ```sh
@@ -22,7 +22,7 @@
 
 ### Run project in docker:
 ```sh
-cp src/.env.templ src/.env
+cp .env.templ .env
 docker-compose build
 docker-compose up -d
 docker-compose exec app python manage.py fake_db
@@ -31,9 +31,11 @@ docker-compose exec app python manage.py createsuperuser
 
 ### Run project locally:
 ```sh
-cp src/.env.templ src/.env
-pip-sync requirements.txt dev-requirements.txt
-cd src
+`pyenv install 3.11.3 && pyenv local 3.11.3`
+[Install Poetry](https://python-poetry.org/docs/#installation)
+cp .env.templ .env
+poetry install
+cd backend
 ./manage.py migrate
 ./manage.py createsuperuser
 ./manage.py fake_db
@@ -42,15 +44,15 @@ cd src
 
 ### Run tests:
 ```sh
-cd src
+cd backend
 pytes
 ```
 
 ### Enable S3 upload
-1. Uncoment `#DEFAULT_FILE_STORAGE=storages.backends.s3boto3.S3Boto3Storage` in src/.env
+1. Uncoment `#DEFAULT_FILE_STORAGE=storages.backends.s3boto3.S3Boto3Storage` in .env
 2. Specify your AWS keys 
 ```sh 
-#src/.env
+#.env
 AWS_ACCESS_KEY_ID={YOUR_AWS_ACCESS_KEY_ID}
 AWS_SECRET_ACCESS_KEY={YOUR_AWS_SECRET_ACCESS_KEY}
 AWS_STORAGE_BUCKET_NAME={YOUR_AWS_STORAGE_BUCKET_NAME}
