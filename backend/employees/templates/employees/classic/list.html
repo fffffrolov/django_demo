@@ -4,9 +4,7 @@
   <h1>Employees</h1>
   <div class="row">
     <div class="col">
-      <turbo-frame id="{{ frame }}" src="{{ frame_src }}" loading="lazy">
-        {% include "_loader.html"%}
-      </turbo-frame>
+      {% include "employees/classic/_list.html" with url=url %}
     </div>
   </div>
 {% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block bootstrap5_extra_head %}
+  <script type="module">
+    import hotwiredTurbo from 'https://cdn.skypack.dev/@hotwired/turbo';
+  </script>
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'branches:turbo:list' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'employees:turbo:list' %}">Employees</a>
+          </li>
+        </ul>
+        <div class="d-flex">
+          <ul class="navbar-nav me-2">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'branches:classic:list' %}" data-turbo="false">Classic</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'api:v1:schema-redoc' %}" data-turbo="false">API</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+{% endblock %}

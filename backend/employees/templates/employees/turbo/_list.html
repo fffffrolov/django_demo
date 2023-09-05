@@ -12,8 +12,8 @@
       {% for object in object_list %}
         <tr>
           <td>{{ counter_base|add:forloop.counter }}</td>
-          <td><a href="{% url 'employees:detail' pk=object.pk %}" data-turbo-frame="_top">{{ object.name }}</a></td>
-          <td><a href="{% url 'branches:detail' pk=object.branch_id %}" data-turbo-frame="_top">{{ object.branch.name }}</a></td>
+          <td><a href="{% url 'employees:turbo:detail' pk=object.pk %}" data-turbo-frame="_top">{{ object.name }}</a></td>
+          <td><a href="{% url 'branches:turbo:detail' pk=object.branch_id %}" data-turbo-frame="_top">{{ object.branch.name }}</a></td>
           <td>{{ object.position }}</td>
         </tr>
       {% empty %}

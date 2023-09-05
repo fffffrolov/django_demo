@@ -1,0 +1,23 @@
+<table class="table table-hover align-middle">
+  <thead>
+    <tr>
+      <th># Total: {{ paginator.count }}</th>
+      <th>Name</th>
+      <th>Branch</th>
+      <th>Position</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for object in object_list %}
+      <tr>
+        <td>{{ counter_base|add:forloop.counter }}</td>
+        <td><a href="{% url 'employees:classic:detail' pk=object.pk %}">{{ object.name }}</a></td>
+        <td><a href="{% url 'branches:classic:detail' pk=object.branch_id %}">{{ object.branch.name }}</a></td>
+        <td>{{ object.position }}</td>
+      </tr>
+    {% empty %}
+      <td colspan="3">There's no entities</td>
+    {% endfor %}
+  </tbody>
+</table>
+{% include "_pagination.html" with url=url %}
