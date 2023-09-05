@@ -35,7 +35,8 @@ class EmployeeDetailView(DetailView):
 
         frame_src = (
             reverse('employees:frame-list')
-            + f'?branch={self.object.branch_id}&exclude={self.object.id}'
+            + f'?branch={self.object.branch_id}'
+            + f'&exclude={self.object.id}'
             + f'&position={self.object.position}'
         )
         context.update(

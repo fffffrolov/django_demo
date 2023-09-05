@@ -7,7 +7,8 @@ from django.db import models
 class EmployeeQuerySet(WordSimilarityQuerySet):
 
     def search(self, query_string: str) -> models.QuerySet:
-        # same as search for BranchQueryset
+        # When searching for a person, the user usually expects the first or last name to start with their input.
+
         query_string = query_string.strip()
 
         return self.annotate(

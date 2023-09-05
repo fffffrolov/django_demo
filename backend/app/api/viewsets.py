@@ -140,12 +140,14 @@ class ReadOnlyAppViewSet(MultiSerializerMixin, ReadOnlyModelViewSet):
     pass
 
 
-class AppViewSet(AppCreateModelMixin,
-                 mixins.RetrieveModelMixin,
-                 AppUpdateModelMixin,
-                 mixins.DestroyModelMixin,
-                 mixins.ListModelMixin,
-                 GenericViewSet):
+class AppViewSet(
+    AppCreateModelMixin,
+    mixins.RetrieveModelMixin,
+    AppUpdateModelMixin,
+    mixins.DestroyModelMixin,
+    mixins.ListModelMixin,
+    GenericViewSet,
+):
     """
     Patch rest_framework.viewsets.ModelViewSet with mixins: MultiSerializerMixin, AppCreateModelMixin and AppUpdateModelMixin.
     Allows create and update instances with corresponding create and update serializers,
