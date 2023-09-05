@@ -77,7 +77,7 @@ def test_search_without_first_letters(employee_with_name, search, in_search):
 def test_search_by_branch_name(create_employee):
     employee = create_employee()
 
-    filtered = Employee.objects.branch_search(employee.branch.name).values_list('id', flat=True)
+    filtered = Employee.objects.search(employee.branch.name).values_list('id', flat=True)
 
     assert employee.id in filtered
 
@@ -86,6 +86,6 @@ def test_search_by_branch_name_part(create_employee):
     employee = create_employee(branch__name='Branch with several worlds in name')
 
     first_word = employee.branch.name.split(' ')[0]
-    filtered = Employee.objects.branch_search(first_word).values_list('id', flat=True)
+    filtered = Employee.objects.search(first_word).values_list('id', flat=True)
 
     assert employee.id in filtered
