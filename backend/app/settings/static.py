@@ -1,4 +1,4 @@
-from app.settings.env import env, BASE_PATH
+from app.settings.env import BASE_PATH, env
 
 DEFAULT_STATIC_ROOT = (BASE_PATH.parent / 'static').resolve()
 STATIC_URL = 'static/'

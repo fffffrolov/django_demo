@@ -13,10 +13,16 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AddIndex(
             model_name='employee',
-            index=django.contrib.postgres.indexes.GinIndex(fields=['first_name'], name='employee_fname_gin_index', opclasses=['gin_trgm_ops']),
+            index=django.contrib.postgres.indexes.GinIndex(
+                fields=['first_name'],
+                name='employee_fname_gin_index',
+                opclasses=['gin_trgm_ops']),
         ),
         migrations.AddIndex(
             model_name='employee',
-            index=django.contrib.postgres.indexes.GinIndex(fields=['last_name'], name='employee_lname_gin_index', opclasses=['gin_trgm_ops']),
+            index=django.contrib.postgres.indexes.GinIndex(
+                fields=['last_name'],
+                name='employee_lname_gin_index',
+                opclasses=['gin_trgm_ops']),
         ),
     ]

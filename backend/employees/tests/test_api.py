@@ -25,7 +25,7 @@ def test_n_plus_one_in_list(api_client, django_assert_max_num_queries, create_br
 def test_search_by_name(api_client, create_employee):
     employee = create_employee()
     response = api_client.get(
-        f'/api/v1/employees/?search={employee.first_name}',
+        f'/api/v1/employees/?search={employee.first_name[:-3]}',
         format='json',
     ).json()
     filtered_ids = [employee['id'] for employee in response['results']]
@@ -33,10 +33,23 @@ def test_search_by_name(api_client, create_employee):
     assert employee.id in filtered_ids
 
 
-def test_search_by_branch(api_client, create_employee):
+def test_search_by_branch_name(api_client, create_employee):
     employee = create_employee()
+
     response = api_client.get(
-        f'/api/v1/employees/?branch_search={employee.branch.name}',
+        f'/api/v1/employees/?search={employee.branch.name}',
+        format='json',
+    ).json()
+    filtered_ids = [employee['id'] for employee in response['results']]
+
+    assert employee.id in filtered_ids
+
+
+def test_filter_by_branch(api_client, create_employee):
+    employee = create_employee()
+
+    response = api_client.get(
+        f'/api/v1/employees/?branch={employee.branch_id}',
         format='json',
     ).json()
     filtered_ids = [employee['id'] for employee in response['results']]

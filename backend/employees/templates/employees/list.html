@@ -1,8 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Employees</h1>
-  {% with with_branch=True %}
-    {% include "employees/_list.html" %}
-  {% endwith %}
+  <h1>Employees</h1>
+  <div class="row">
+    <div class="col">
+      <turbo-frame id="{{ frame }}" src="{{ frame_src }}" loading="lazy">
+        {% include "_loader.html"%}
+      </turbo-frame>
+    </div>
+  </div>
 {% endblock %}

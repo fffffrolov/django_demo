@@ -1,11 +1,26 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>{{ object.name }}</h1>
-<p>{{ object.facade }}</p>
-<p>Total Employees: {{ object.employees_count }}</p>
-<p>Location: {{ object.location }}</p>
-{% with with_branch=False %}
-    {% include "employees/_list.html" %}
-  {% endwith %}
+  <div class="row mb-4">
+    <div class="col-3">
+      <img class="img-fluid" src="https://source.unsplash.com/random/300x300?sig={{ object.pk }}" />
+    </div>
+    <div class="col">
+      <h1>{{ object.name }}</h1>
+      <p>{{ object.facade }}</p>
+      <p>Total Employees: {{ object.employees_count }}</p>
+      <p>Location: {{ object.location }}</p>
+    </div>
+  </div>
+  <h3>Employees list</h1>
+  <div class="row">
+    <div class="col">
+      <turbo-frame
+        id="{{ frame }}"
+        src="{{ frame_src }}"
+        loading="lazy">
+        {% include "_loader.html"%}
+      </turbo-frame>
+    </div>
+  </div>
 {% endblock %}

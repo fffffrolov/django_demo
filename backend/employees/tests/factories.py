@@ -1,8 +1,7 @@
 import factory
-from pytest_factoryboy import register
-
 from branches.tests.factories import BranchFactory
 from employees.models import Employee
+from pytest_factoryboy import register
 
 
 @register

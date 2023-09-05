@@ -1,7 +1,6 @@
-from rest_framework import serializers
-
 from app.api.fields import LocationGISField
 from branches.models import Branch
+from rest_framework import serializers
 
 
 class BranchSmallSerializer(serializers.ModelSerializer):

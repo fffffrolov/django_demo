@@ -1,26 +1,25 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th># Total: {{ paginator.count }}</th>
-      <th>Name</th>
-      {% if with_branch %}<th>Branch</th>{% endif %}
-      <th>Position</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for object in object_list %}
+<turbo-frame id="{{ frame }}">
+  <table class="table table-hover">
+    <thead>
       <tr>
-        <td>{{ counter_base|add:forloop.counter }}</td>
-        <td><a href="{% url 'employees:detail' pk=object.pk %}">{{ object.name }}</a></td>
-        {% if with_branch %}
-          <td><a href="{% url 'branches:detail' pk=object.branch_id %}">{{ object.branch.name }}</a></td>
-        {% endif %}
-        <td>{{ object.position }}</td>
+        <th># Total: {{ paginator.count }}</th>
+        <th>Name</th>
+        <th>Branch</th>
+        <th>Position</th>
       </tr>
-    {% empty %}
-      <td colspan="{% if with_branch %}4{% else %}3{% endif %}">There is no entities</td>
-    {% endfor %}
-  </tbody>
-</table>
-
-{% include "_pagination.html" %}
+    </thead>
+    <tbody>
+      {% for object in object_list %}
+        <tr>
+          <td>{{ counter_base|add:forloop.counter }}</td>
+          <td><a href="{% url 'employees:detail' pk=object.pk %}" data-turbo-frame="_top">{{ object.name }}</a></td>
+          <td><a href="{% url 'branches:detail' pk=object.branch_id %}" data-turbo-frame="_top">{{ object.branch.name }}</a></td>
+          <td>{{ object.position }}</td>
+        </tr>
+      {% empty %}
+        <td colspan="4">There's no one here</td>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% include "_pagination.html" with frame=frame url=url %}
+</turbo-frame>

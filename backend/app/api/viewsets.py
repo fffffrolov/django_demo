@@ -1,8 +1,7 @@
 from collections.abc import Iterable
 from typing import TYPE_CHECKING, Dict
 
-from rest_framework import mixins
-from rest_framework import status as rest_status
+from rest_framework import mixins, status as rest_status
 from rest_framework.response import Response
 from rest_framework.serializers import Serializer
 from rest_framework.settings import api_settings
@@ -141,12 +140,14 @@ class ReadOnlyAppViewSet(MultiSerializerMixin, ReadOnlyModelViewSet):
     pass
 
 
-class AppViewSet(AppCreateModelMixin,
-                 mixins.RetrieveModelMixin,
-                 AppUpdateModelMixin,
-                 mixins.DestroyModelMixin,
-                 mixins.ListModelMixin,
-                 GenericViewSet):
+class AppViewSet(
+    AppCreateModelMixin,
+    mixins.RetrieveModelMixin,
+    AppUpdateModelMixin,
+    mixins.DestroyModelMixin,
+    mixins.ListModelMixin,
+    GenericViewSet,
+):
     """
     Patch rest_framework.viewsets.ModelViewSet with mixins: MultiSerializerMixin, AppCreateModelMixin and AppUpdateModelMixin.
     Allows create and update instances with corresponding create and update serializers,

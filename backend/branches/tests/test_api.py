@@ -8,7 +8,7 @@ def test_order_by_distance(api_client, get_point_inside_moscow, moscow_canter, o
     not_moscow_branches = create_branches(3, location=outside_moscow)
 
     response = api_client.get(
-        f'/api/v1/branches/?location={moscow_canter[1]},{moscow_canter[0]}',
+        f'/api/v1/branches/?geo={moscow_canter[1]},{moscow_canter[0]}',
         format='json',
     ).json()
     filtered_branches_ids = [branch['id'] for branch in response['results']]

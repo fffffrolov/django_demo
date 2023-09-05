@@ -1,6 +1,5 @@
-from split_settings.tools import include, optional
-
 from app.settings.env import env
+from split_settings.tools import include, optional
 
 SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG', cast=bool, default=False)

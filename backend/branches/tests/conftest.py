@@ -2,9 +2,8 @@ import random
 from typing import Callable, Sequence
 
 import pytest
-from django.contrib.gis.geos.point import Point
-
 from branches.tests.factories import BranchFactory
+from django.contrib.gis.geos.point import Point
 from employees.tests.factories import EmployeeFactory
 
 

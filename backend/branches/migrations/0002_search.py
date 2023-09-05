@@ -13,6 +13,9 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AddIndex(
             model_name='branch',
-            index=django.contrib.postgres.indexes.GistIndex(fields=['name'], name='branch_name_gist_trgm_index', opclasses=['gist_trgm_ops']),
+            index=django.contrib.postgres.indexes.GistIndex(
+                fields=['name'],
+                name='branch_name_gist_trgm_index',
+                opclasses=['gist_trgm_ops']),
         ),
     ]

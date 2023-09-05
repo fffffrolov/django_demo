@@ -1,5 +1,4 @@
 import factory
-
 from app.test.factories import DjangoGeoPointProvider
 from branches.models import Branch
 

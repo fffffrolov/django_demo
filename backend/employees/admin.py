@@ -1,6 +1,5 @@
-from django_admin_listfilter_dropdown.filters import DropdownFilter, RelatedDropdownFilter
-
 from app.admin import AppModelAdmin, AppTabularInlinePaginated, admin
+from django_admin_listfilter_dropdown.filters import DropdownFilter, RelatedDropdownFilter
 from employees.models import Employee
 
 

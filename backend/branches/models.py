@@ -2,15 +2,14 @@ from __future__ import annotations
 
 from decimal import Decimal
 
+from app.models import AppModel, WordSimilarityQuerySet, models
+from app.utils import RandomPath
 from behaviors.behaviors import Timestamped
 from django.contrib.gis.db.models import GeometryField
 from django.contrib.gis.db.models.functions import Distance
 from django.contrib.gis.geos.point import Point
 from django.contrib.gis.measure import D
 from django.contrib.postgres.indexes import GistIndex
-
-from app.models import AppModel, WordSimilarityQuerySet, models
-from app.utils import RandomPath
 
 
 class BranchQueryset(WordSimilarityQuerySet):

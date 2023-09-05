@@ -1,6 +1,5 @@
-from django.urls import include, path
-
 from app.api.schema import schema_view
+from django.urls import include, path
 
 app_name = 'api_v1'
 urlpatterns = [

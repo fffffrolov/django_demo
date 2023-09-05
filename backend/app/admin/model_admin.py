@@ -18,10 +18,13 @@ class CustomSearchMixin:
     """
     Customize admin search by specified in model QuerySet method
     """
-    def get_search_results(self,
-                           request: HttpRequest,
-                           queryset: models.QuerySet,
-                           search_term: str) -> Tuple[models.QuerySet, bool]:
+
+    def get_search_results(
+        self,
+        request: HttpRequest,
+        queryset: models.QuerySet,
+        search_term: str,
+    ) -> Tuple[models.QuerySet, bool]:
         if hasattr(queryset, 'search') and callable(queryset.search):
             if search_term:
                 return queryset.search(search_term), False
@@ -68,26 +71,25 @@ class AdminFormsMixin:
     }
 
 
-class AppModelAdmin(CustomSearchMixin,
-                    AdminLinksMixin,
-                    AdminFormsMixin,
-                    admin.ModelAdmin):
+class AppModelAdmin(
+    CustomSearchMixin, AdminLinksMixin, AdminFormsMixin, admin.ModelAdmin,
+):
     pass
 
 
-class AppTabularInlinePaginated(AdminLinksMixin,
-                                AdminFormsMixin,
-                                TabularInlinePaginated):
+class AppTabularInlinePaginated(
+    AdminLinksMixin, AdminFormsMixin, TabularInlinePaginated,
+):
     pass
 
 
-class AppTabularInline(AdminLinksMixin,
-                       AdminFormsMixin,
-                       admin.TabularInline):
+class AppTabularInline(
+    AdminLinksMixin, AdminFormsMixin, admin.TabularInline,
+):
     pass
 
 
-class AppStackedInline(AdminLinksMixin,
-                       AdminFormsMixin,
-                       admin.StackedInline):
+class AppStackedInline(
+    AdminLinksMixin, AdminFormsMixin, admin.StackedInline,
+):
     pass

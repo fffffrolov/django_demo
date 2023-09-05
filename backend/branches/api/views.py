@@ -1,6 +1,6 @@
 from app.api.viewsets import ReadOnlyAppViewSet
-from branches.api.filters import BranchFilterSet
 from branches.api.serializers import BranchSerializer
+from branches.filters import BranchFilterSet
 from branches.models import Branch
 
 
