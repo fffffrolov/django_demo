@@ -4,7 +4,10 @@
     <ul class="pagination justify-content-center">
       {% if paginator.num_pages != 1 and page_obj.number != 1 %}
         <li class="page-item">
-          <a  href="{% update_url_query url page=1 %}" class="page-link" data-turbo-frame="{{frame}}">First</a>
+          <a
+            href="{% update_url_query url page=1 %}"
+            class="page-link"
+            {% if frame %}data-turbo-frame="{{frame}}"{% endif %}>First</a>
         </li>
       {% else %}
         <li class="page-item disabled">
@@ -15,7 +18,9 @@
       {% if page_obj.has_previous %}
         <li class="page-item">
           <a
-            href="{% update_url_query url page=page_obj.previous_page_number %}" class="page-link" data-turbo-frame="{{frame}}">&laquo;</a>
+            href="{% update_url_query url page=page_obj.previous_page_number %}"
+            class="page-link"
+            {% if frame %}data-turbo-frame="{{frame}}"{% endif %}>&laquo;</a>
         </li>
       {% else %}
         <li class="page-item disabled"><a href="#" class="page-link">&laquo;</a></li>
@@ -26,14 +31,20 @@
           <li class="page-item active"><a class="page-link" href="#">{{ i }}</a></li>
         {% elif page_obj.number > i|add:"-5" and page_obj.number < i|add:"+5"%}
           <li class="page-item">
-            <a class="page-link" href="{% update_url_query url page=i %}" data-turbo-frame="{{frame}}">{{ i }}</a>
+            <a
+              href="{% update_url_query url page=i %}"
+              class="page-link"
+              {% if frame %}data-turbo-frame="{{frame}}"{% endif %}>{{ i }}</a>
           </li>
         {% endif %}
       {% endfor %}
 
       {% if page_obj.has_next %}
         <li class="page-item">
-          <a href="{% update_url_query url page=page_obj.next_page_number %}" class="page-link">&raquo;</a>
+          <a
+            href="{% update_url_query url page=page_obj.next_page_number %}"
+            class="page-link"
+            {% if frame %}data-turbo-frame="{{frame}}"{% endif %}>&raquo;</a>
         </li>
       {% else %}
         <li class="page-item disabled"><a href="#" class="page-link">&raquo;</a></li>
@@ -41,7 +52,10 @@
 
       {% if paginator.num_pages != 1 and paginator.num_pages != page_obj.number %}
         <li class="page-item">
-          <a class="page-link" href="{% update_url_query url page=paginator.num_pages %}">Last</a>
+          <a
+            href="{% update_url_query url page=paginator.num_pages %}"
+            class="page-link"
+            {% if frame %}data-turbo-frame="{{frame}}"{% endif %}>Last</a>
         </li>
       {% else %}
         <li class="page-item disabled"><a class="page-link" href="#">Last</a></li>

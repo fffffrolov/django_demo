@@ -9,12 +9,13 @@
     </thead>
     <tbody>
       {% for object in object_list %}
+        {% url 'branches:turbo:detail' pk=object.pk as object_url %}
         <tr>
           <td>{{ counter_base|add:forloop.counter }}</td>
-          <td><a href="{% url 'branches:detail' pk=object.pk %}" data-turbo-frame="_top">
+          <td><a href="{{ object_url }}" data-turbo-frame="_top">
             <img class="img-thumbnail" src="https://source.unsplash.com/random/60x60?sig={{ object.pk }}" />
           </a></td>
-          <td><a href="{% url 'branches:detail' pk=object.pk %}" data-turbo-frame="_top">{{ object.name }}</a></td>
+          <td><a href="{{ object_url }}" data-turbo-frame="_top">{{ object.name }}</a></td>
         </tr>
       {% empty %}
         <td colspan="3">There's no entities</td>

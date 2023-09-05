@@ -8,19 +8,14 @@
   <div class="col">
     <h1>{{ object.name }}</h1>
     <p>{{ object.position }}</p>
-    <p>Branch: <a href="{% url 'branches:detail' pk=object.branch.pk %}">{{ object.branch.name }}</a></p>
+    <p>Branch: <a href="{% url 'branches:classic:detail' pk=object.branch.pk %}">{{ object.branch.name }}</a></p>
     <p>Location: {{ object.branch.location }}</p>
   </div>
 </div>
 <h3>Working with</h3>
 <div class="row">
   <div class="col">
-    <turbo-frame
-      id="{{ frame }}"
-      src="{{ frame_src }}"
-      loading="lazy">
-      {% include "_loader.html"%}
-    </turbo-frame>
+    {% include "employees/classic/_list.html" with url=url %}
   </div>
 </div>
 {% endblock %}
