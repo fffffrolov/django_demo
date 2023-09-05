@@ -1,7 +1,6 @@
 from django.urls import include, path
-from rest_framework.routers import SimpleRouter
-
 from employees.api import views
+from rest_framework.routers import SimpleRouter
 
 router = SimpleRouter()
 router.register('', views.EmployeeViewSet)

@@ -1,7 +1,6 @@
-from rest_framework import serializers
-
 from branches.api.serializers import BranchSmallSerializer
 from employees.models import Employee
+from rest_framework import serializers
 
 
 class EmployeeSerializer(serializers.ModelSerializer):

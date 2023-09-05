@@ -1,7 +1,6 @@
 from typing import Callable, Sequence
 
 import pytest
-
 from branches.tests.factories import BranchFactory
 from employees.tests.factories import EmployeeFactory
 

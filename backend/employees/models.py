@@ -1,25 +1,23 @@
+from app.models import AppModel, WordSimilarityQuerySet
 from behaviors.behaviors import Timestamped
 from django.contrib.postgres.indexes import GinIndex
-
-from app.models import AppModel, WordSimilarityQuerySet, models
+from django.db import models
 
 
 class EmployeeQuerySet(WordSimilarityQuerySet):
 
     def search(self, query_string: str) -> models.QuerySet:
-        # When searching for a person, the user usually expects the first or last name to start with their input.
-        # We use ~~* (ILIKE) operator because we can increase this query productivity by GIN index.
-        query = f'{str(query_string).strip()}%'
-        return self.extra(where=['first_name ~~* %s OR last_name ~~* %s'], params=[query, query])
-
-    def branch_search(self, query_string: str) -> models.QuerySet:
         # same as search for BranchQueryset
+        query_string = query_string.strip()
+
         return self.annotate(
             branch_name=models.F('branch__name'),
         ).with_word_similarity(
             'branch_name', query_string,
         ).filter(
-            word_similarity__gte=0.5,
+            models.Q(word_similarity__gte=0.5)
+            | models.Q(first_name__istartswith=query_string)
+            | models.Q(last_name__istartswith=query_string)
         ).order_by('-word_similarity')
 
     def with_branch(self) -> models.QuerySet:
@@ -49,7 +47,7 @@ class Employee(Timestamped, AppModel):
     objects = EmployeeQuerySet.as_manager()
 
     class Meta:
-        ordering = ['-id']
+        ordering = ['-branch', 'position', 'last_name']
         indexes = [
             GinIndex(name='employee_fname_gin_index', fields=['first_name'], opclasses=['gin_trgm_ops']),
             GinIndex(name='employee_lname_gin_index', fields=['last_name'], opclasses=['gin_trgm_ops']),

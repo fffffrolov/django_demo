@@ -1,7 +1,6 @@
+from branches.api import views
 from django.urls import include, path
 from rest_framework.routers import SimpleRouter
-
-from branches.api import views
 
 router = SimpleRouter()
 router.register('', views.BranchViewSet)

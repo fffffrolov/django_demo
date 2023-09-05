@@ -34,3 +34,17 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = 600
 
 DEFAULT_LOAD_DELAY = env('DEFAULT_LOAD_DELAY', default=1, cast=int)
 ENABLE_TURBO = env('ENABLE_TURBO', default=True, cast=bool)
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+        },
+    },
+    "root": {
+        "handlers": ["console"],
+        "level": "INFO",
+    },
+}

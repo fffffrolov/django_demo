@@ -1,9 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>{{ object.name }}</h1>
-<p>{{ object.position }}</p>
-<p>Branch: <a href="{% url 'branches:detail' pk=object.branch.pk %}">{{ object.branch.name }}</a></p>
-<p>Location: {{ object.branch.location }}</p>
+<div class="row mb-4">
+  <div class="col-3">
+    <img class="img-fluid" src="https://thispersondoesnotexist.com/" />
+  </div>
+  <div class="col">
+    <h1>{{ object.name }}</h1>
+    <p>{{ object.position }}</p>
+    <p>Branch: <a href="{% url 'branches:detail' pk=object.branch.pk %}">{{ object.branch.name }}</a></p>
+    <p>Location: {{ object.branch.location }}</p>
+  </div>
+</div>
+<h3>Working with</h3>
+<div class="row">
+  <div class="col">
+    <turbo-frame
+      id="{{ frame }}"
+      src="{{ frame_src }}"
+      loading="lazy">
+      {% include "_loader.html"%}
+    </turbo-frame>
+  </div>
+</div>
 {% endblock %}
 

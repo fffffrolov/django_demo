@@ -1,7 +1,6 @@
 # type: ignore
-from django.contrib import admin
-
 from app.admin.model_admin import AppModelAdmin, AppStackedInline, AppTabularInline, AppTabularInlinePaginated
+from django.contrib import admin
 
 __all__ = [
     'admin',

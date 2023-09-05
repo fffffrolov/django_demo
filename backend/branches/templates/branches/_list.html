@@ -1,0 +1,25 @@
+<turbo-frame id="{{ frame }}">
+  <table class="table table-hover align-middle">
+    <thead>
+      <tr>
+        <th scope="col"># Total: {{ paginator.count }}</th>
+        <th scope="col">Image</th>
+        <th scope="col">Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for object in object_list %}
+        <tr>
+          <td>{{ counter_base|add:forloop.counter }}</td>
+          <td><a href="{% url 'branches:detail' pk=object.pk %}" data-turbo-frame="_top">
+            <img class="img-thumbnail" src="https://source.unsplash.com/random/60x60?sig={{ object.pk }}" />
+          </a></td>
+          <td><a href="{% url 'branches:detail' pk=object.pk %}" data-turbo-frame="_top">{{ object.name }}</a></td>
+        </tr>
+      {% empty %}
+        <td colspan="3">There's no entities</td>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% include "_pagination.html" with frame=frame url=url %}
+</turbo-frame>

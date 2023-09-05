@@ -1,5 +1,4 @@
 import pytest
-
 from branches.models import Branch
 
 pytestmark = [pytest.mark.django_db]

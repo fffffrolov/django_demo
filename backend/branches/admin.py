@@ -1,9 +1,8 @@
-from django.utils.safestring import mark_safe
-from rolepermissions.checkers import has_permission
-
 from app.admin import AppModelAdmin, admin
 from branches.models import Branch
+from django.utils.safestring import mark_safe
 from employees.admin import EmployeeReadonlyTable
+from rolepermissions.checkers import has_permission
 
 
 @admin.register(Branch)

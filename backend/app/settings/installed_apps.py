@@ -3,6 +3,7 @@ INSTALLED_APPS = [
     'branches',
     'employees',
 
+    'turbo',
     'behaviors',
     'django_admin_inline_paginator',
     'django_admin_listfilter_dropdown',

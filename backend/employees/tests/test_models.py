@@ -1,5 +1,4 @@
 import pytest
-
 from employees.models import Employee
 from employees.tests.factories import EmployeeFactory
 

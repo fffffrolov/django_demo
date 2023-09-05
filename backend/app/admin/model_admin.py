@@ -18,6 +18,7 @@ class CustomSearchMixin:
     """
     Customize admin search by specified in model QuerySet method
     """
+
     def get_search_results(self,
                            request: HttpRequest,
                            queryset: models.QuerySet,

@@ -3,10 +3,9 @@ import tempfile
 from pathlib import Path
 
 import pytest
+from app.test.factories import UserFactory
 from django.conf import settings
 from rest_framework.test import APIClient
-
-from app.test.factories import UserFactory
 
 
 @pytest.fixture(scope='session', autouse=True)

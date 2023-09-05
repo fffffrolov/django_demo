@@ -1,6 +1,7 @@
 """Read .env file"""
-import environ
 from pathlib import Path
+
+import environ
 
 BASE_PATH = Path(__file__).parent.parent.parent.resolve()
 BASE_DIR = str(BASE_PATH)
